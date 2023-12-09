@@ -5,46 +5,41 @@ import os
 import matplotlib.pyplot as plt
 import requests
 
-def setUpDatabase(db_name):
+def insertNewsData(db_name):
+    # connectToDatabase
     path = os.path.dirname(os.path.abspath(__file__))
     conn = sqlite3.connect(path+'/'+db_name)
     cur = conn.cursor()
-    return cur, conn
 
-def createTopStoriesTable(cur, conn):
-    cur.execute("CREATE TABLE IF NOT EXISTS top_stories (ranking INTEGER PRIMARY KEY, title TEXT, locale TEXT)")
+    # createTopStoriesTable
+    cur.execute("CREATE TABLE IF NOT EXISTS top_stories(ranking INTEGER PRIMARY KEY, title TEXT, locale TEXT)")
     conn.commit()
 
-# thenewsapi
-# https://api.thenewsapi.com/v1/news/top?api_token=vbPjlVlYfITCitC4cKYFlt3oeN9Y5uUXbyTNrx10&limit=2&page=1
-# https://api.thenewsapi.com/v1/news/top?api_token=vbPjlVlYfITCitC4cKYFlt3oeN9Y5uUXbyTNrx10&limit=2&page=2
-# grab data from first 50 pages
+    # newsdata.io
+    # search by keyword "Covid"
+    # 10 articles at a time
 
-# newsapi
-# d6658b18e4944b728bbf727db2f4dd62
+    # addTopStories
+    base_url = 'https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&q=covid'
+    params = {"keyword": "covid"}
 
-# newsdata.io
-# search by keyword "Covid"
-# 10 articles at a time
-
-def addTopStories(base_url, params=None, cur, conn):
     response = requests.get(base_url, params)
+
+    if response.status_code == 200:
+        data = response.json()
+    
+    else:
+        print(f"Failed to fetch data. Status code: {response.status_code}")
+
     data = response.text
     stories = json.loads(data)
 
     for story in stories:
-        ranking = story['']
-        title = story['']
-        locale = story['']
+        ranking = story['results']['ranking']
+        title = story['results']['title']
+        locale = story['results']['locale']
 
         cur.execute(
             "INSERT OR IGNORE INTO top_stories (ranking, title, locale) VALUES (?,?,?)", (ranking, title, locale)
         )
     conn.commit()
-    
-
-def main():
-    cur, conn = setUpDatabase('countryImpact.db')
-    createTopStoriesTable(cur, conn)
-    params = {"keyword": "covid"}
-    addTopStories('https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&q=covid ', params, cur, conn)
