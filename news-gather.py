@@ -44,7 +44,7 @@ def addTopStories(base_url, params=None, cur, conn):
     
 
 def main():
-    cur, conn = setUpDatabase('news.db')
+    cur, conn = setUpDatabase('countryImpact.db')
     createTopStoriesTable(cur, conn)
     params = {"keyword": "covid"}
     addTopStories('https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&q=covid ', params, cur, conn)
