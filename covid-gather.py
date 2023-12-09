@@ -3,14 +3,14 @@ import pycountry
 import sqlite3
 
 url = "https://covid-193.p.rapidapi.com/statistics"
-database_path = "covid19_data.db"  # Change the path as needed
+database_path = "countryImpact.db"  # Change the path as needed
 
 # Function to insert data into the SQLite database
 def insert_data(country, cases, recovered, deaths):
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT OR REPLACE INTO covid19_data (country, cases, recovered, deaths)
+        INSERT OR REPLACE INTO countryImpact (country, cases, recovered, deaths)
         VALUES (?, ?, ?, ?)
     ''', (country, cases, recovered, deaths))
     conn.commit()
@@ -43,3 +43,6 @@ if response.status_code == 200:
 else:
     print(f"Failed to retrieve data for {countryName}. Status code:", response.status_code)
     print("Response content:", response.text)
+
+recoveryPercent = recovered/cases
+print(recoveryPercent)
