@@ -12,7 +12,7 @@ def setUpDatabase(db_name):
     return cur, conn
 
 def createTopStoriesTable(cur, conn):
-    cur.execute("CREATE TABLE IF NOT EXISTS top_stories (ranking INTEGER PRIMARY KEY, title TEXT, locale TEXT")
+    cur.execute("CREATE TABLE IF NOT EXISTS top_stories (ranking INTEGER PRIMARY KEY, title TEXT, locale TEXT)")
     conn.commit()
 
 # thenewsapi
