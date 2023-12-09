@@ -10,7 +10,7 @@ def insert_data(country, cases, recovered, deaths):
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT OR REPLACE INTO countryImpact (country, cases, recovered, deaths)
+        CREATE TABLE IF NOT EXISTS covidData (country, cases, recovered, deaths)
         VALUES (?, ?, ?, ?)
     ''', (country, cases, recovered, deaths))
     conn.commit()
