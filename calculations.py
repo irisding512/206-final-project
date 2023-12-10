@@ -16,20 +16,20 @@ def setUpCountryCountsTable(db_name):
     conn = sqlite3.connect(path+'/'+db_name)
     cur = conn.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS top_countries_in_stories(country TEXT PRIMARY KEY, count INTEGER)")
+    cur.execute("CREATE TABLE IF NOT EXISTS top_countries_in_stories(country_id INTEGER PRIMARY KEY, count INTEGER)")
     conn.commit()
     return cur, conn
 
 
 def countCountries(cur, conn):
     # count how many times each country appears in the top_stories table
-    cur.execute("SELECT country, COUNT(country) FROM top_stories GROUP BY country ORDER BY COUNT(country) DESC")
+    cur.execute("SELECT country_id, COUNT(country_id) FROM latest_stories GROUP BY country_id ORDER BY COUNT(country_id) DESC")
     country_counts = cur.fetchall()
 
     # print the results
     for country, count in country_counts:
         print(f"{country}: {count} times")
-        cur.execute("INSERT OR IGNORE INTO top_countries_in_stories (country, count) VALUES (?,?)", (country, count))
+        cur.execute("INSERT OR IGNORE INTO top_countries_in_stories (country_id, count) VALUES (?,?)", (country, count))
     conn.commit()
 
 cur, conn = setUpCountryCountsTable(db_name)
