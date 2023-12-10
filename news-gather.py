@@ -35,22 +35,38 @@ response = requests.get(base_url, params=None)
 if response.status_code == 200:
     data = response.json()
     stories = data.get('results', [])
-    print(stories)
 
+    #checks how many rows have been added to table so far
+    cur.execute(f"SELECT COUNT(*) FROM top_stories")
+    initial_row_count = cur.fetchone()[0]
+
+    #returns 10 stories (sometimes can be duplicates)
     for index in range(10):
         #check how many rows are in table, in case last value was not inserted b/c it was a duplicate, to get rankings
         cur.execute(f"SELECT COUNT(*) FROM top_stories")
-        row_count = cur.fetchone()[0]
+        before_row_count = cur.fetchone()[0]
 
-        #assign table variables
-        ranking = row_count + 1
-        title = stories[index]['title']
-        country = stories[index]['country'][0].title()
-        link = stories[index]['link']
+        #if current row count is less than initial row count + 5 items & table has less than 100 items
+        if before_row_count < 100:
 
-        #insert into table
-        insertNewsData(cur, conn, ranking, title, country, link)
-        print(f"Data for {country} inserted into the database.")
+            #assign table variables
+            ranking = before_row_count + 1
+            title = stories[index]['title']
+            country = stories[index]['country'][0].title()
+            link = stories[index]['link']
+
+            #insert into table
+            insertNewsData(cur, conn, ranking, title, country, link)
+
+            #check row count again
+            cur.execute(f"SELECT COUNT(*) FROM top_stories")
+            after_row_count = cur.fetchone()[0]
+            
+            if after_row_count == before_row_count + 1:
+                print(f"Data for {country} inserted into the database.")
+        
+        else:
+            print("Database contains 100 items.")
 else:
     print(f"Failed to retrieve data. Status code:", response.status_code)
     print("Response content:", response.text)
