@@ -15,17 +15,17 @@ def setUpTable(db_name):
     cur = conn.cursor()
 
     # create top stories table
-    cur.execute("CREATE TABLE IF NOT EXISTS top_stories(ranking INTEGER, title TEXT PRIMARY KEY, country TEXT, link TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS latest_stories(ranking INTEGER, title TEXT PRIMARY KEY, country TEXT, countryID INTEGER, link TEXT)")
     conn.commit()
     return cur, conn
 
-def insertNewsData(cur, conn, ranking, title, country, link):
+def insertNewsData(cur, conn, ranking, title, country, countryID, link):
     # newsdata.io API
     # search by keyword "health"
     # 10 articles at a time
 
     # add top stories into database
-    cur.execute("INSERT OR IGNORE INTO top_stories (ranking, title, country, link) VALUES (?,?,?,?)", (ranking, title, country, link))
+    cur.execute("INSERT OR IGNORE INTO latest_stories (ranking, title, country, countryID, link) VALUES (?,?,?,?,?)", (ranking, title, country, countryID, link))
     conn.commit()
 
 cur, conn = setUpTable(db_name)
@@ -53,6 +53,8 @@ if response.status_code == 200:
             ranking = before_row_count + 1
             title = stories[index]['title']
             country = stories[index]['country'][0].title()
+            #country ID assignment
+            countryID = 0
             link = stories[index]['link']
 
             #insert into table
