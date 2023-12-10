@@ -16,7 +16,7 @@ def row_exists(cursor, country_id):
 # Function to check if a row with the same country_id exists in countryKeys table
 def country_key_exists(cursor, country_id):
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS countryKeys (country_id INTEGER, country_name TEXT)
+        CREATE TABLE IF NOT EXISTS countryKeys (country_name TEXT PRIMARY KEY, country_id INTEGER)
     ''')
     cursor.execute("SELECT COUNT(*) FROM countryKeys WHERE country_id = ?", (country_id,))
     return cursor.fetchone()[0] > 0
@@ -43,9 +43,9 @@ def insert_country_key(conn, country_id, country_name):
     # Check if a row with the same country_id already exists
     if not country_key_exists(cursor, country_id):
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS countryKeys (country_id INTEGER, country_name TEXT)
+            CREATE TABLE IF NOT EXISTS countryKeys (country_name TEXT PRIMARY KEY, country_id INTEGER)
         ''')
-        cursor.execute("INSERT INTO countryKeys (country_id, country_name) VALUES (?, ?)",
+        cursor.execute("INSERT INTO countryKeys (country_name, country_id) VALUES (?, ?)",
                        (country_id, country_name))
         conn.commit()
         return True  # Return True if a new row is inserted successfully
@@ -73,7 +73,7 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS covidData (country_id INTEGER, cases INTEGER, recovered INTEGER, deaths INTEGER, inserted INTEGER)
 ''')
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS countryKeys (country_id INTEGER, country_name TEXT)
+    CREATE TABLE IF NOT EXISTS countryKeys (country_name TEXT PRIMARY KEY, country_id INTEGER)
 ''')
 
 # Get the set of countries that have already been inserted
@@ -114,7 +114,7 @@ for entry in data['response']:
         # Insert data into the covidData table if all values are not NULL and haven't been inserted yet
         if insert_data(conn, current_country_id, total_cases, total_recoveries, total_deaths):
             # Insert data into the countryKeys table if all values are not NULL and there are no duplicates
-            insert_country_key(conn, current_country_id, country_name)
+            insert_country_key(conn, country_name, current_country_id)
             rows_inserted += 1
 
             # Update the set of inserted countries

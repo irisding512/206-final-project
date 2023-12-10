@@ -37,13 +37,13 @@ if response.status_code == 200:
     stories = data.get('results', [])
 
     #checks how many rows have been added to table so far
-    cur.execute(f"SELECT COUNT(*) FROM top_stories")
+    cur.execute(f"SELECT COUNT(*) FROM latest_stories")
     initial_row_count = cur.fetchone()[0]
 
     #returns 10 stories (sometimes can be duplicates)
     for index in range(10):
         #check how many rows are in table, in case last value was not inserted b/c it was a duplicate, to get rankings
-        cur.execute(f"SELECT COUNT(*) FROM top_stories")
+        cur.execute(f"SELECT COUNT(*) FROM latest_stories")
         before_row_count = cur.fetchone()[0]
 
         #if table has less than 100 items
@@ -52,6 +52,7 @@ if response.status_code == 200:
             #assign table variables
             ranking = before_row_count + 1
             title = stories[index]['title']
+            link = stories[index]['link']
             country = stories[index]['country'][0].title()
 
             #exceptions for country ID assignment
@@ -59,16 +60,17 @@ if response.status_code == 200:
                 country = "USA"
             elif country.lower() == "united kingdom":
                 country = "UK"
-                
+
             #country ID assignment
-            countryID = 0
-            link = stories[index]['link']
+            cur.execute("SELECT country_id FROM countryKeys WHERE country_name = ?", (country,))
+            result = cur.fetchone()
+            countryID = result[0] if result else None
 
             #insert into table
-            insertNewsData(cur, conn, ranking, title, country, link)
+            insertNewsData(cur, conn, ranking, title, country, countryID, link)
 
             #check row count again
-            cur.execute(f"SELECT COUNT(*) FROM top_stories")
+            cur.execute(f"SELECT COUNT(*) FROM latest_stories")
             after_row_count = cur.fetchone()[0]
             
             if after_row_count == before_row_count + 1:
