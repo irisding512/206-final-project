@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import requests
 
 db_name = "countryImpact.db"
-base_url = 'https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&q=covid'
+base_url = "https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&qInTitle=health"
 
 def setUpTable(db_name):
     # connect to database
@@ -21,7 +21,7 @@ def setUpTable(db_name):
 
 def insertNewsData(cur, conn, ranking, title, country, link):
     # newsdata.io API
-    # search by keyword "Covid"
+    # search by keyword "health"
     # 10 articles at a time
 
     # add top stories into database
