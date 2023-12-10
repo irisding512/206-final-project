@@ -1,0 +1,1 @@
+stories = data.get('results', [])
