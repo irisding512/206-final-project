@@ -53,6 +53,13 @@ if response.status_code == 200:
             ranking = before_row_count + 1
             title = stories[index]['title']
             country = stories[index]['country'][0].title()
+
+            #exceptions for country ID assignment
+            if country.lower() == "united states of america":
+                country = "USA"
+            elif country.lower() == "united kingdom":
+                country = "UK"
+                
             #country ID assignment
             countryID = 0
             link = stories[index]['link']

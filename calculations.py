@@ -16,7 +16,6 @@ def setUpCountryCountsTable(db_name):
     conn = sqlite3.connect(path+'/'+db_name)
     cur = conn.cursor()
 
-
     cur.execute("CREATE TABLE IF NOT EXISTS top_countries_in_stories(country TEXT PRIMARY KEY, count INTEGER)")
     conn.commit()
     return cur, conn
