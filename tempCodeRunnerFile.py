@@ -1,79 +1,71 @@
-import unittest
+import requests
+import pycountry
 import sqlite3
-import json
-import os
-import matplotlib.pyplot as plt
-<<<<<<< HEAD
-import requests
-=======
-import requests
 
-db_name = "countryImpact.db"
-base_url = "https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&qInTitle=health"
+url = "https://covid-193.p.rapidapi.com/statistics"
+database_path = "countryImpact.db"  # Change the path as needed
 
-def setUpTable(db_name):
-    # connect to database
-    path = os.path.dirname(os.path.abspath(__file__))
-    conn = sqlite3.connect(path+'/'+db_name)
-    cur = conn.cursor()
+# Function to check if a row with the same country exists in covidData table
+def row_exists(cursor, country_id):
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS covidData (country_id INTEGER, cases INTEGER, recovered INTEGER, deaths INTEGER, inserted INTEGER)
+    ''')
+    cursor.execute("SELECT COUNT(*) FROM covidData WHERE country_id = ? AND inserted = 1", (country_id,))
+    return cursor.fetchone()[0] > 0
 
-    # create top stories table
-    cur.execute("CREATE TABLE IF NOT EXISTS top_stories(ranking INTEGER, title TEXT PRIMARY KEY, country TEXT, link TEXT)")
-    conn.commit()
-    return cur, conn
+# Function to insert data into the SQLite database
+def insert_data(conn, country_id, cases, recovered, deaths):
+    cursor = conn.cursor()
 
-def insertNewsData(cur, conn, ranking, title, country, link):
-    # newsdata.io API
-    # search by keyword "health"
-    # 10 articles at a time
+    # Check if a row with the same country_id has already been inserted
+    if not row_exists(cursor, country_id):
+        # Check for NULL values before inserting
+        if None not in (country_id, cases, recovered, deaths):
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS covidData (country_id INTEGER, cases INTEGER, recovered INTEGER, deaths INTEGER, inserted INTEGER)
+            ''')
+            cursor.execute("INSERT INTO covidData (country_id, cases, recovered, deaths, inserted) VALUES (?, ?, ?, ?, 1)",
+                           (country_id, cases, recovered, deaths))
+            conn.commit()
+            return True  # Return True if a new row is inserted successfully
 
-    # add top stories into database
-    cur.execute("INSERT OR IGNORE INTO top_stories (ranking, title, country, link) VALUES (?,?,?,?)", (ranking, title, country, link))
-    conn.commit()
+    return False  # Return False if a row with the same country_id has already been inserted or contains NULL values
 
-cur, conn = setUpTable(db_name)
+# Assuming you have a SQLite database connection
+conn = sqlite3.connect(database_path)
+cursor = conn.cursor()
 
-response = requests.get(base_url, params=None)
+# Limit the number of rows to be inserted
+rows_to_insert = 25
+rows_inserted = 0
 
-if response.status_code == 200:
-    data = response.json()
-    stories = data.get('results', [])
+# Make the API request and retrieve the data for entries that haven't been inserted yet
+# countryISO = 'fr'
+# countryName = pycountry.countries.get(alpha_2=countryISO).name
+# querystring = {"country": countryName}
 
-    #checks how many rows have been added to table so far
-    cur.execute(f"SELECT COUNT(*) FROM top_stories")
-    initial_row_count = cur.fetchone()[0]
+headers = {
+    "X-RapidAPI-Key": "a6d9a1e9c2msh6c79d540ed20982p1b8b9cjsn6c6fab5bac81",
+    "X-RapidAPI-Host": "covid-193.p.rapidapi.com"
+}
 
-    #returns 10 stories (sometimes can be duplicates)
-    for index in range(10):
-        #check how many rows are in table, in case last value was not inserted b/c it was a duplicate, to get rankings
-        cur.execute(f"SELECT COUNT(*) FROM top_stories")
-        before_row_count = cur.fetchone()[0]
+response = requests.get(url, headers=headers)
+data = response.json()
 
-        #if current row count is less than initial row count + 5 items & table has less than 100 items
-        if before_row_count < 100:
+# Iterate over the data and insert into the database
+for entry in data['response']:
+    country_id = entry['country']
+    total_cases = entry['cases']['total']
+    total_deaths = entry['deaths']['total']
+    total_recoveries = entry['cases']['recovered']
 
-            #assign table variables
-            ranking = before_row_count + 1
-            title = stories[index]['title']
-            country = stories[index]['country'][0].title()
-            link = stories[index]['link']
+    # Insert data into the covidData table if all values are not NULL and haven't been inserted yet
+    if insert_data(conn, country_id, total_cases, total_recoveries, total_deaths):
+        rows_inserted += 1
 
-            #insert into table
-            insertNewsData(cur, conn, ranking, title, country, link)
+    # Break the loop if the desired number of rows is reached
+    if rows_inserted >= rows_to_insert:
+        break
 
-            #check row count again
-            cur.execute(f"SELECT COUNT(*) FROM top_stories")
-            after_row_count = cur.fetchone()[0]
-            
-            if after_row_count == before_row_count + 1:
-                print(f"Data for {country} inserted into the database.")
-        
-        else:
-            print("Database contains 100 items.")
-else:
-    print(f"Failed to retrieve data. Status code:", response.status_code)
-    print("Response content:", response.text)
-
+# Close the connection
 conn.close()
-
->>>>>>> 1e5c571 (working tables, using names)
