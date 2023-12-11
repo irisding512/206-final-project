@@ -149,6 +149,10 @@ recovered_value = 11691934
 country_id_to_update = 225
 cursor.execute("UPDATE covidData SET recovered = ? WHERE country_id = ?", (recovered_value, country_id_to_update))
 
+recovered_value = 827923
+country_id_to_update = 148
+cursor.execute("UPDATE covidData SET recovered = ? WHERE country_id = ?", (recovered_value, country_id_to_update))
+
 
 conn.commit()
 
