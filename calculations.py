@@ -57,7 +57,7 @@ cur.execute('''
 
 # Insert calculated data into the "recoveryPercent" table
 cur.execute('''
-    INSERT INTO recoveryPercent (country_id, cases, recovered, recovery_percentage)
+    INSERT OR REPLACE INTO recoveryPercent (country_id, cases, recovered, recovery_percentage)
     SELECT cd.country_id, cd.cases, cd.recovered, (cd.recovered * 100.0 / cd.cases) AS recovery_percentage
     FROM covidData cd
     JOIN countryKeys ck ON cd.country_id = ck.country_id
