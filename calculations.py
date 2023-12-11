@@ -71,6 +71,13 @@ with open(output_file_path, "w") as output_file:
     for count in counts:
         country_id, count = count
         output_file.write(f"Country ID: {country_id}, Percentage: {count}%\n")
+    output_file.write(f"\n\n\n\n")  
+    output_file.write(f"Covid Recovery Percent in all Countries\n")
+    output_file.write(f"---------------------------------------------------------------------------\n\n")     
+    for result in results:
+        country_id, cases, recovered, recovery_percentage = result
+        output_file.write(f"Country ID: {country_id}, Cases: {cases}, Recovered: {recovered}, Recovery Percentage: {recovery_percentage:.2f}%\n")
+
 
 # Close the connection
 conn.close()
