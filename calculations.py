@@ -66,11 +66,11 @@ counts = cur.fetchall()
 # Write calculated data to a text file
 output_file_path = "calculations.txt"
 with open(output_file_path, "w") as output_file:
-    output_file.write(f"Number of Articles per Country ID in the Top 100 Health News Articles\n")
-    output_file.write(f"-------------------------------------------------------------------\n\n")
+    output_file.write(f"Percentage of Articles in the Top 100 Health News Articles from Each Country\n")
+    output_file.write(f"---------------------------------------------------------------------------\n\n")
     for count in counts:
         country_id, count = count
-        output_file.write(f"Country ID: {country_id}, Count: {count}\n")
+        output_file.write(f"Country ID: {country_id}, Percentage: {count}%\n")
 
 # Close the connection
 conn.close()
