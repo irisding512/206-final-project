@@ -41,14 +41,14 @@ conn.close()
 
 
 # Perform calculations for recovery percentage
-cursor.execute('''
+cur.execute('''
     SELECT country_name, cases, recovered, (recovered * 100.0 / cases) AS recovery_percentage
     FROM covidData
     JOIN countryKeys ON covidData.country_id = countryKeys.country_id
 ''')
 
 # Fetch results
-results = cursor.fetchall()
+results = cur.fetchall()
 
 # Write calculated data to a text file
 output_file_path = "recovery_percentage_data.txt"
