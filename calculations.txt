@@ -1,20 +1,20 @@
-Number of Articles per Country ID in the Top 100 Health News Articles
+Percentage of Articles in the Top 100 Health News Articles from Each Country
 -------------------------------------------------------------------
 
-Country ID: 222, Count: 23
-Country ID: 224, Count: 14
-Country ID: 238, Count: 13
-Country ID: 196, Count: 11
-Country ID: 225, Count: 7
-Country ID: 200, Count: 6
-Country ID: 228, Count: 5
-Country ID: 173, Count: 5
-Country ID: 195, Count: 3
-Country ID: 186, Count: 3
-Country ID: 120, Count: 3
-Country ID: 223, Count: 2
-Country ID: 176, Count: 1
-Country ID: 172, Count: 1
-Country ID: 168, Count: 1
-Country ID: 148, Count: 1
-Country ID: 121, Count: 1
+Country ID: 222, Percentage: 23%
+Country ID: 224, Percentage: 14%
+Country ID: 238, Percentage: 13%
+Country ID: 196, Percentage: 11%
+Country ID: 225, Percentage: 7%
+Country ID: 200, Percentage: 6%
+Country ID: 228, Percentage: 5%
+Country ID: 173, Percentage: 5%
+Country ID: 195, Percentage: 3%
+Country ID: 186, Percentage: 3%
+Country ID: 120, Percentage: 3%
+Country ID: 223, Percentage: 2%
+Country ID: 176, Percentage: 1%
+Country ID: 172, Percentage: 1%
+Country ID: 168, Percentage: 1%
+Country ID: 148, Percentage: 1%
+Country ID: 121, Percentage: 1%
