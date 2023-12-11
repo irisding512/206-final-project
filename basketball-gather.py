@@ -6,6 +6,7 @@ def create_db():
     conn = sqlite3.connect('countryImpact.db')
     c = conn.cursor()
 
+
     # Create a table for basketball game data
     c.execute('''CREATE TABLE IF NOT EXISTS games (
                     game_id INTEGER PRIMARY KEY,
@@ -18,7 +19,7 @@ def create_db():
 
     # Create another table for additional game-related data
     c.execute('''CREATE TABLE IF NOT EXISTS game_details (
-                    game_id INTEGER,
+                    game_id INTEGER,    
                     game_date TEXT,
                     venue TEXT,
                     FOREIGN KEY(game_id) REFERENCES games(game_id)

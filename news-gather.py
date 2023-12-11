@@ -15,17 +15,19 @@ def setUpTable(db_name):
     cur = conn.cursor()
 
     # create top stories table
-    cur.execute("CREATE TABLE IF NOT EXISTS top_stories(ranking INTEGER, title TEXT PRIMARY KEY, country TEXT, link TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS latest_stories(ranking INTEGER, title TEXT PRIMARY KEY, country_id INTEGER, link TEXT)")
     conn.commit()
     return cur, conn
 
-def insertNewsData(cur, conn, ranking, title, country, link):
+def insertNewsData(cur, conn, ranking, title, country_id, link):
     # newsdata.io API
     # search by keyword "health"
     # 10 articles at a time
 
     # add top stories into database
-    cur.execute("INSERT OR IGNORE INTO top_stories (ranking, title, country, link) VALUES (?,?,?,?)", (ranking, title, country, link))
+    cur.execute("INSERT OR IGNORE INTO latest_stories (ranking, title, country_id, link) VALUES (?,?,?,?)", (ranking, title, country_id, link))
+    cur.execute("DELETE FROM latest_stories WHERE country_id IS NULL")
+
     conn.commit()
 
 cur, conn = setUpTable(db_name)
@@ -37,13 +39,13 @@ if response.status_code == 200:
     stories = data.get('results', [])
 
     #checks how many rows have been added to table so far
-    cur.execute(f"SELECT COUNT(*) FROM top_stories")
+    cur.execute(f"SELECT COUNT(*) FROM latest_stories")
     initial_row_count = cur.fetchone()[0]
 
     #returns 10 stories (sometimes can be duplicates)
     for index in range(10):
         #check how many rows are in table, in case last value was not inserted b/c it was a duplicate, to get rankings
-        cur.execute(f"SELECT COUNT(*) FROM top_stories")
+        cur.execute(f"SELECT COUNT(*) FROM latest_stories")
         before_row_count = cur.fetchone()[0]
 
         #if table has less than 100 items
@@ -52,14 +54,27 @@ if response.status_code == 200:
             #assign table variables
             ranking = before_row_count + 1
             title = stories[index]['title']
-            country = stories[index]['country'][0].title()
             link = stories[index]['link']
+            country = stories[index]['country'][0].title()
+
+            #exceptions for country ID assignment
+            if country.lower() == "united states of america":
+                country = "USA"
+            elif country.lower() == "united kingdom":
+                country = "UK"
+            elif country.lower() == "south korea":
+                country = "S Korea"
+
+            #country ID assignment
+            cur.execute("SELECT country_id FROM countryKeys WHERE country_name = ?", (country,))
+            result = cur.fetchone()
+            country_id = result[0] if result else None
 
             #insert into table
-            insertNewsData(cur, conn, ranking, title, country, link)
+            insertNewsData(cur, conn, ranking, title, country_id, link)
 
             #check row count again
-            cur.execute(f"SELECT COUNT(*) FROM top_stories")
+            cur.execute(f"SELECT COUNT(*) FROM latest_stories")
             after_row_count = cur.fetchone()[0]
             
             if after_row_count == before_row_count + 1:
