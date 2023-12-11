@@ -30,5 +30,27 @@ plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readabili
 plt.tight_layout()
 plt.show()
 
+
+# Query data from the country counts table with a join to get country names
+cur.execute('''
+    SELECT tcis.country_id, tcis.count, ck.country_name
+    FROM top_countries_in_stories tcis
+    JOIN countryKeys ck ON tcis.country_id = ck.country_id
+''')
+counts = cur.fetchall()
+
+country_ids, counts, country_names = zip(*counts)
+
+# Plotting the bar graph
+plt.bar(country_names, counts, color='blue')
+plt.xlabel('Country Names')
+plt.ylabel('% of Articles in Top 100')
+plt.title('% of Articles in Top 100 Health News Articles from Each Country')
+
+# Show the plot
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability
+plt.tight_layout()
+plt.show()
+
 # Close the connection
 conn.close()
