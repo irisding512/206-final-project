@@ -31,6 +31,8 @@ cur.execute('''
 ''')
 
 conn.commit()
+
+cur.execute("SELECT country_id, cases, recovered, recovery_percentage FROM recoveryPercent WHERE country_id IS NOT NULL AND cases IS NOT NULL AND recovered IS NOT NULL AND recovery_percentage IS NOT NULL")
 results = cur.fetchall()
 
 # Write calculated data to a text file
@@ -39,7 +41,6 @@ with open(output_file_path, "w") as output_file:
     for result in results:
         country_id, cases, recovered, recovery_percentage = result
         output_file.write(f"Country ID: {country_id}, Cases: {cases}, Recovered: {recovered}, Recovery Percentage: {recovery_percentage:.2f}%\n")
-
 
 
 #PART TWO: CALCULATE COUNTRY COUNTS
@@ -58,14 +59,18 @@ for country_id, count in country_counts:
     cur.execute("INSERT OR IGNORE INTO top_countries_in_stories (country_id, count) VALUES (?,?)", (country_id, count))
 
 conn.commit()
-results = cur.fetchall()
+
+cur.execute("SELECT country_id, COUNT(country_id) FROM latest_stories GROUP BY country_id ORDER BY COUNT(country_id) DESC")
+counts = cur.fetchall()
 
 # Write calculated data to a text file
 output_file_path = "calculations.txt"
 with open(output_file_path, "w") as output_file:
-    for result in results:
-        country_id, count = result
-        output_file.write(f"Country ID: {country_id}, Count: {count}%\n")
+    output_file.write(f"Number of Articles per Country ID in the Top 100 Health News Articles\n")
+    output_file.write(f"-------------------------------------------------------------------\n\n")
+    for count in counts:
+        country_id, count = count
+        output_file.write(f"Country ID: {country_id}, Count: {count}\n")
 
 # Close the connection
 conn.close()
