@@ -35,15 +35,8 @@ conn.commit()
 cur.execute("SELECT country_id, cases, recovered, recovery_percentage FROM recoveryPercent WHERE country_id IS NOT NULL AND cases IS NOT NULL AND recovered IS NOT NULL AND recovery_percentage IS NOT NULL")
 results = cur.fetchall()
 
-# Write calculated data to a text file
-output_file_path = "calculations.txt"
-with open(output_file_path, "w") as output_file:
-    for result in results:
-        country_id, cases, recovered, recovery_percentage = result
-        output_file.write(f"Country ID: {country_id}, Cases: {cases}, Recovered: {recovered}, Recovery Percentage: {recovery_percentage:.2f}%\n")
 
-
-#PART TWO: CALCULATE COUNTRY COUNTS
+#PART TWO: CALCULATE COUNTRY COUNTS/PERCENTAGES
 base_url = "https://newsdata.io/api/1/news?apikey=pub_34479d289637b0172bf42c8842ddfc21776a8&qInTitle=health"
 
 #create country counts table
