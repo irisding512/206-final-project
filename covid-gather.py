@@ -128,5 +128,29 @@ for entry in data['response']:
             break
 
 
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS covidData (country_id INTEGER, cases INTEGER, recovered INTEGER, deaths INTEGER, inserted INTEGER)
+''')
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS countryKeys (country_name TEXT PRIMARY KEY, country_id INTEGER)
+''')
+
+# Get the set of countries that have already been inserted
+inserted_countries = get_inserted_countries(conn)
+
+# Assuming the 'recovered' value you want to insert is 44,468,623
+recovered_value = 44468623
+country_id_to_update = 222
+
+# Update the 'recovered' value for the specified country_id
+cursor.execute("UPDATE covidData SET recovered = ? WHERE country_id = ?", (recovered_value, country_id_to_update))
+
+recovered_value = 11691934
+country_id_to_update = 225
+cursor.execute("UPDATE covidData SET recovered = ? WHERE country_id = ?", (recovered_value, country_id_to_update))
+
+
+conn.commit()
+
 # Close the connection
 conn.close()

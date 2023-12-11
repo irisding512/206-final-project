@@ -3,7 +3,7 @@ import sqlite3
 
 # Function to create a SQLite database and tables
 def create_db():
-    conn = sqlite3.connect('basketball_data.db')
+    conn = sqlite3.connect('countryImpact.db')
     c = conn.cursor()
 
     # Create a table for basketball game data
@@ -44,7 +44,7 @@ def fetch_and_store_data():
             if 'response' in data and isinstance(data['response'], list) and len(data['response']) > 0:
                 games_list = data['response']
 
-                conn = sqlite3.connect('basketball_data.db')
+                conn = sqlite3.connect('countryImpact.db')
                 c = conn.cursor()
 
                 for game in games_list:

@@ -41,21 +41,30 @@ conn.close()
 
 
 # Perform calculations for recovery percentage
+# Create a table named "recoveryPercent" if it doesn't exist
+db_name = "countryImpact.db"
+path = os.path.dirname(os.path.abspath(__file__))
+conn = sqlite3.connect(path+'/'+db_name)
+cur = conn.cursor()
 cur.execute('''
-    SELECT country_name, cases, recovered, (recovered * 100.0 / cases) AS recovery_percentage
-    FROM covidData
-    JOIN countryKeys ON covidData.country_id = countryKeys.country_id
+    CREATE TABLE IF NOT EXISTS recoveryPercent (
+        country_id INTEGER PRIMARY KEY,
+        cases INTEGER,
+        recovered INTEGER,
+        recovery_percentage REAL
+    )
 ''')
 
-# Fetch results
-results = cur.fetchall()
+# Insert calculated data into the "recoveryPercent" table
+cur.execute('''
+    INSERT OR REPLACE INTO recoveryPercent (country_id, cases, recovered, recovery_percentage)
+    SELECT cd.country_id, cd.cases, cd.recovered, (cd.recovered * 100.0 / cd.cases) AS recovery_percentage
+    FROM covidData cd
+    JOIN countryKeys ck ON cd.country_id = ck.country_id
+''')
 
-# Write calculated data to a text file
-output_file_path = "recovery_percentage_data.txt"
-with open(output_file_path, "w") as output_file:
-    for result in results:
-        country_name, cases, recovered, recovery_percentage = result
-        output_file.write(f"{country_name}: Cases={cases}, Recovered={recovered}, Recovery Percentage={recovery_percentage:.2f}%\n")
+# Commit the changes
+conn.commit()
 
 # Close the connection
 conn.close()
