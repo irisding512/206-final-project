@@ -35,4 +35,27 @@ def countCountries(cur, conn):
 cur, conn = setUpCountryCountsTable(db_name)
 countCountries(cur, conn)
 conn.close()
-        
+
+
+#PUTTING THIS OVER HERE FOR NOW!
+
+
+# Perform calculations for recovery percentage
+cur.execute('''
+    SELECT country_name, cases, recovered, (recovered * 100.0 / cases) AS recovery_percentage
+    FROM covidData
+    JOIN countryKeys ON covidData.country_id = countryKeys.country_id
+''')
+
+# Fetch results
+results = cur.fetchall()
+
+# Write calculated data to a text file
+output_file_path = "recovery_percentage_data.txt"
+with open(output_file_path, "w") as output_file:
+    for result in results:
+        country_name, cases, recovered, recovery_percentage = result
+        output_file.write(f"{country_name}: Cases={cases}, Recovered={recovered}, Recovery Percentage={recovery_percentage:.2f}%\n")
+
+# Close the connection
+conn.close()
