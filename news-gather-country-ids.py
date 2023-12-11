@@ -26,6 +26,8 @@ def insertNewsData(cur, conn, ranking, title, country_id, link):
 
     # add top stories into database
     cur.execute("INSERT OR IGNORE INTO latest_stories (ranking, title, country_id, link) VALUES (?,?,?,?)", (ranking, title, country_id, link))
+    cur.execute("DELETE FROM latest_stories WHERE country_id IS NULL")
+
     conn.commit()
 
 cur, conn = setUpTable(db_name)
@@ -60,6 +62,8 @@ if response.status_code == 200:
                 country = "USA"
             elif country.lower() == "united kingdom":
                 country = "UK"
+            elif country.lower() == "south korea":
+                country = "S Korea"
 
             #country ID assignment
             cur.execute("SELECT country_id FROM countryKeys WHERE country_name = ?", (country,))
