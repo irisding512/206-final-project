@@ -42,6 +42,10 @@ conn.close()
 
 # Perform calculations for recovery percentage
 # Create a table named "recoveryPercent" if it doesn't exist
+db_name = "countryImpact.db"
+path = os.path.dirname(os.path.abspath(__file__))
+conn = sqlite3.connect(path+'/'+db_name)
+cur = conn.cursor()
 cur.execute('''
     CREATE TABLE IF NOT EXISTS recoveryPercent (
         country_id INTEGER PRIMARY KEY,
