@@ -12,7 +12,8 @@ def create_db():
                     home_team TEXT,
                     away_team TEXT,
                     home_score INTEGER,
-                    away_score INTEGER
+                    away_score INTEGER,
+                    location TEXT
                 )''')
 
     # Create another table for additional game-related data
@@ -38,46 +39,62 @@ def fetch_and_store_data():
     response = requests.get(url, headers=headers, params=querystring)
 
     if response.status_code == 200:
-        data = response.json()
+        try:
+            data = response.json()
+            if 'response' in data and isinstance(data['response'], list) and len(data['response']) > 0:
+                games_list = data['response']
 
-        # Extracting data (modify as per API response structure)
-        home_team_name = data['teams']['home']['name']
-        away_team_name = data['teams']['away']['name']
-        home_scores = data['scores']['home']
-        away_scores = data['scores']['away']
-        game_date = data['date']
-        venue = data['venue']
+                conn = sqlite3.connect('basketball_data.db')
+                c = conn.cursor()
 
-        # Inserting data into the database
-        conn = sqlite3.connect('basketball_data.db')
-        c = conn.cursor()
-        c.execute('''INSERT INTO games (
-                        home_team,
-                        away_team,
-                        home_score,
-                        away_score
-                    ) VALUES (?, ?, ?, ?)''',
-                    (home_team_name, away_team_name,
-                     home_scores['total'], away_scores['total']))
-        
-        game_id = c.lastrowid  # Get the last inserted row id (game_id)
-        
-        c.execute('''INSERT INTO game_details (
-                        game_id,
-                        game_date,
-                        venue
-                    ) VALUES (?, ?, ?)''',
-                    (game_id, game_date, venue))
-        
-        conn.commit()
-        conn.close()
+                for game in games_list:
+                    try:
+                        home_team_name = game['teams']['home']['name']
+                        away_team_name = game['teams']['away']['name']
+                        home_scores = game['scores']['home']
+                        away_scores = game['scores']['away']
+                        game_date = game['date']
+                        venue = game.get('venue', 'Unknown')
+                        location = game['country']['name'] if 'country' in game else 'Unknown'
 
+                        c.execute('''INSERT INTO games (
+                                        home_team,
+                                        away_team,
+                                        home_score,
+                                        away_score,
+                                        location
+                                    ) VALUES (?, ?, ?, ?, ?)''',
+                                    (home_team_name, away_team_name,
+                                    home_scores['total'], away_scores['total'], location))
+
+                        game_id = c.lastrowid  # Get the last inserted row id (game_id)
+
+                        c.execute('''INSERT INTO game_details (
+                                        game_id,
+                                        game_date,
+                                        venue
+                                    ) VALUES (?, ?, ?)''',
+                                    (game_id, game_date, venue))
+
+                    except KeyError as e:
+                        print(f"Error extracting game data: {e}. Skipping this game.")
+                        continue
+
+                conn.commit()
+                conn.close()
+
+                print("Data successfully stored in the database.")
+            else:
+                print("No valid games found in the response.")
+        except ValueError as e:
+            print(f"ValueError while processing response: {e}. Response content: {response.content}")
     else:
-        print("Failed to fetch data")
+        print(f"Failed to fetch data. Status code: {response.status_code}")
+
 
 # Create database and tables (if they don't exist)
 create_db()
 
-# Fetch and store data (repeat this section multiple times to gather at least 100 items)
+# Fetch and store data multiple times to reach 100 rows
 for _ in range(4):  # Fetching 25 items at a time, 4 times to reach 100 items
     fetch_and_store_data()
