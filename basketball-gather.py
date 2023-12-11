@@ -3,7 +3,7 @@ import sqlite3
 
 # Function to create a SQLite database and tables
 def create_db():
-    conn = sqlite3.connect('basketball_data.db')
+    conn = sqlite3.connect('countryImpact.db')
     c = conn.cursor()
 
     # Create a table for basketball game data
