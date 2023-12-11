@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt
 import sqlite3
 import os
+import matplotlib.pyplot as plt
 
 # Connect to the database
 db_name = "countryImpact.db"
@@ -8,27 +8,50 @@ path = os.path.dirname(os.path.abspath(__file__))
 conn = sqlite3.connect(path+'/'+db_name)
 cur = conn.cursor()
 
-# Query data from the recoveryPercent table with a join to get country names
+# Step 1: Retrieve the 17 country_ids from top_countries_in_stories
+cur.execute("SELECT country_id FROM top_countries_in_stories")
+top_country_ids = [row[0] for row in cur.fetchall()]
+
+# Step 2: Replace country_id with country_name using countryKeys
+country_names = []
+for country_id in top_country_ids:
+    cur.execute("SELECT country_name FROM countryKeys WHERE country_id = ?", (country_id,))
+    result = cur.fetchone()
+    if result:
+        country_names.append(result[0])
+
+# Step 3: Query the recoveryPercent table for recovery percentages of the selected countries
 cur.execute('''
-    SELECT rp.country_id, rp.recovery_percentage, ck.country_name
-    FROM recoveryPercent rp
-    JOIN countryKeys ck ON rp.country_id = ck.country_id
-''')
-data = cur.fetchall()
+    SELECT country_id, recovery_percentage
+    FROM recoveryPercent
+    WHERE country_id IN ({})
+'''.format(','.join('?' for _ in top_country_ids)), top_country_ids)
+
+recovery_data = cur.fetchall()
 
 # Extract relevant columns
-country_ids, recovery_percentages, country_names = zip(*data)
+recovery_country_ids, recovery_percentages = zip(*recovery_data)
 
-# Plotting the line graph
-plt.plot(country_names, recovery_percentages, marker='o', linestyle='-')
-plt.xlabel('Country Names')
-plt.ylabel('Recovery Percentage')
-plt.title('Recovery Percentage for Each Country')
-plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability
+# Filter out None values from recovery_percentages
+filtered_recovery_percentages = [percent for percent in recovery_percentages if percent is not None]
 
-# Show the plot
-plt.tight_layout()
-plt.show()
+# Check lengths of country_names and filtered_recovery_percentages
+print("Number of countries:", len(country_names))
+print("Number of recovery percentages:", len(filtered_recovery_percentages))
+
+# Plotting the bar graph if lengths match
+if len(country_names) == len(filtered_recovery_percentages):
+    plt.bar(country_names, filtered_recovery_percentages, color='blue')
+    plt.xlabel('Country Names')
+    plt.ylabel('Recovery Percentage')
+    plt.title('Recovery Percentage for Top Countries in Stories')
+    plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability
+
+    # Show the plot
+    plt.tight_layout()
+    plt.show()
+else:
+    print("Mismatch in the number of countries and recovery percentages.")
 
 # Close the connection
 conn.close()
