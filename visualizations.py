@@ -75,38 +75,21 @@ plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readabili
 plt.tight_layout()
 plt.show()
 
-# Query distinct country names from basketball data
-cur.execute('''
-    SELECT DISTINCT team
-    FROM (
-        SELECT away_team AS team FROM games
-        UNION
-        SELECT home_team AS team FROM games
-    )
-''')
-countries = [row[0] for row in cur.fetchall()]
+# Query the database to get location counts
+cur.execute("SELECT location, COUNT(*) as count FROM games GROUP BY location")
+location_counts = cur.fetchall()
 
-# Query the difference between away and home game scores for each team
-cur.execute('''
-    SELECT team, AVG(away_score - home_score) AS score_difference
-    FROM (
-        SELECT away_team AS team, away_score, home_score FROM games
-        UNION ALL
-        SELECT home_team AS team, home_score, away_score FROM games
-    )
-    GROUP BY team
-''')
-team_score_difference = cur.fetchall()
+# Extract location names and counts
+locations, counts = zip(*location_counts)
 
-# Extract team names and score differences
-teams, score_diffs = zip(*team_score_difference)
+# Plotting the bar graph
+plt.figure(figsize=(10, 6))  # Adjust figure size if needed
+plt.bar(locations, counts, color='skyblue')
+plt.xlabel('Location')
+plt.ylabel('Number of Games')
+plt.title('Number of Basketball Games by Location')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability
 
-# Plotting the bar graph for basketball game calculations
-plt.bar(countries, score_diffs, color='green')
-plt.xlabel('Teams')
-plt.ylabel('Score Difference (Away - Home)')
-plt.title('Score Difference between Away and Home Games for Each Country')
-plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
 
 # Show the plot
 plt.tight_layout()
