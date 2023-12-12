@@ -3,7 +3,7 @@ import pycountry
 import sqlite3
 
 url = "https://covid-193.p.rapidapi.com/statistics"
-database_path = "countryImpact.db"  # Change the path as needed
+database_path = "test1.db"  # Change the path as needed
 
 # Function to check if a row with the same country_id has been inserted in covidData table
 def row_exists(cursor, country_id):

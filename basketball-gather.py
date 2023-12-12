@@ -6,23 +6,23 @@ def create_db():
     conn = sqlite3.connect('countryImpact.db')
     c = conn.cursor()
 
-
     # Create a table for basketball game data
     c.execute('''CREATE TABLE IF NOT EXISTS games (
                     game_id INTEGER PRIMARY KEY,
-                    home_team TEXT,
-                    away_team TEXT,
+                    home_team_id INTEGER,
+                    away_team_id INTEGER,
+                    home_team_name TEXT,
+                    away_team_name TEXT,
                     home_score INTEGER,
                     away_score INTEGER,
+                    game_date TEXT,
                     location TEXT
                 )''')
 
-    # Create another table for additional game-related data
-    c.execute('''CREATE TABLE IF NOT EXISTS game_details (
-                    game_id INTEGER,    
-                    game_date TEXT,
-                    venue TEXT,
-                    FOREIGN KEY(game_id) REFERENCES games(game_id)
+    # Create a table for team IDs and names
+    c.execute('''CREATE TABLE IF NOT EXISTS teams_key (
+                    team_id INTEGER PRIMARY KEY,
+                    team_name TEXT
                 )''')
 
     conn.commit()
@@ -53,7 +53,7 @@ def fetch_and_store_data():
                 conn = sqlite3.connect('countryImpact.db')
                 c = conn.cursor()
 
-                rows_to_insert = 25
+                rows_to_insert = 12
                 rows_inserted = 0
 
                 for game in games_list:
@@ -66,31 +66,34 @@ def fetch_and_store_data():
                             print(f"Game ID {game_id} already exists. Skipping.")
                             continue  # Skip insertion if game ID already exists
 
+                        home_team_id = game['teams']['home']['id']
+                        away_team_id = game['teams']['away']['id']
                         home_team_name = game['teams']['home']['name']
                         away_team_name = game['teams']['away']['name']
                         home_scores = game['scores']['home']
                         away_scores = game['scores']['away']
                         game_date = game['date']
-                        venue = game.get('venue', 'Unknown')
                         location = game['country']['name'] if 'country' in game else 'Unknown'
 
                         c.execute('''INSERT INTO games (
                                         game_id,
-                                        home_team,
-                                        away_team,
+                                        home_team_id,
+                                        away_team_id,
+                                        home_team_name,
+                                        away_team_name,
                                         home_score,
                                         away_score,
-                                        location
-                                    ) VALUES (?, ?, ?, ?, ?, ?)''',
-                                    (game_id, home_team_name, away_team_name,
-                                    home_scores['total'], away_scores['total'], location))
-
-                        c.execute('''INSERT INTO game_details (
-                                        game_id,
                                         game_date,
-                                        venue
-                                    ) VALUES (?, ?, ?)''',
-                                    (game_id, game_date, venue))
+                                        location
+                                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                                    (game_id, home_team_id, away_team_id, home_team_name, away_team_name,
+                                    home_scores['total'], away_scores['total'], game_date, location))
+
+                        # Inserting team IDs and names into the teams_key table
+                        c.execute('''INSERT OR IGNORE INTO teams_key (team_id, team_name) VALUES (?, ?)''',
+                                    (home_team_id, home_team_name))
+                        c.execute('''INSERT OR IGNORE INTO teams_key (team_id, team_name) VALUES (?, ?)''',
+                                    (away_team_id, away_team_name))
 
                         rows_inserted += 1
 
