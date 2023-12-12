@@ -1,13 +1,23 @@
 Percentage of Articles in the Top 100 Health News Articles from Each Country
 ---------------------------------------------------------------------------
 
-Country ID: 224, Percentage: 3%
-Country ID: 222, Percentage: 2%
-Country ID: 196, Percentage: 2%
-Country ID: 238, Percentage: 1%
-Country ID: 225, Percentage: 1%
-Country ID: 186, Percentage: 1%
-Country ID: 173, Percentage: 1%
+Country ID: 222, Percentage: 23%
+Country ID: 224, Percentage: 14%
+Country ID: 238, Percentage: 13%
+Country ID: 196, Percentage: 11%
+Country ID: 225, Percentage: 7%
+Country ID: 200, Percentage: 6%
+Country ID: 228, Percentage: 5%
+Country ID: 173, Percentage: 5%
+Country ID: 195, Percentage: 3%
+Country ID: 186, Percentage: 3%
+Country ID: 120, Percentage: 3%
+Country ID: 223, Percentage: 2%
+Country ID: 176, Percentage: 1%
+Country ID: 172, Percentage: 1%
+Country ID: 168, Percentage: 1%
+Country ID: 148, Percentage: 1%
+Country ID: 121, Percentage: 1%
 
 
 
@@ -131,6 +141,7 @@ Country ID: 142, Cases: 1243838, Recovered: 1087587, Recovery Percentage: 87.44%
 Country ID: 143, Cases: 507274, Recovered: 500835, Recovery Percentage: 98.73%
 Country ID: 144, Cases: 1049089, Recovered: 1040268, Recovery Percentage: 99.16%
 Country ID: 145, Cases: 1003450, Recovered: 991322, Recovery Percentage: 98.79%
+Country ID: 148, Cases: 841469, Recovered: 827923, Recovery Percentage: 98.39%
 Country ID: 149, Cases: 660854, Recovered: 659490, Recovery Percentage: 99.79%
 Country ID: 150, Cases: 621008, Recovered: 615445, Recovery Percentage: 99.10%
 Country ID: 155, Cases: 451107, Recovered: 435162, Recovery Percentage: 96.47%
@@ -191,8 +202,10 @@ Country ID: 217, Cases: 10080046, Recovered: 9949361, Recovery Percentage: 98.70
 Country ID: 218, Cases: 5631281, Recovered: 5603595, Recovery Percentage: 99.51%
 Country ID: 219, Cases: 6384891, Recovered: 6203441, Recovery Percentage: 97.16%
 Country ID: 221, Cases: 23430629, Recovered: 22767937, Recovery Percentage: 97.17%
+Country ID: 222, Cases: 45002561, Recovered: 44468623, Recovery Percentage: 98.81%
 Country ID: 223, Cases: 6814484, Recovered: 6647104, Recovery Percentage: 97.54%
 Country ID: 224, Cases: 24812582, Recovered: 24579473, Recovery Percentage: 99.06%
+Country ID: 225, Cases: 11714922, Recovered: 11691934, Recovery Percentage: 99.80%
 Country ID: 226, Cases: 26475343, Recovered: 26068983, Recovery Percentage: 98.47%
 Country ID: 227, Cases: 14654526, Recovered: 14498828, Recovery Percentage: 98.94%
 Country ID: 228, Cases: 38688634, Recovered: 38240600, Recovery Percentage: 98.84%

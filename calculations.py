@@ -85,6 +85,7 @@ with open(output_file_path, "w") as output_file:
         country_id, cases, recovered, recovery_percentage = result
         output_file.write(f"Country ID: {country_id}, Cases: {cases}, Recovered: {recovered}, Recovery Percentage: {recovery_percentage:.2f}%\n")
 
+    output_file.write(f"\n\n\n\n")
     output_file.write("Count of Basketball Games by Location\n")
     output_file.write("------------------------------------\n\n")
     location_counts = count_locations()
