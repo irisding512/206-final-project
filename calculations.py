@@ -71,6 +71,24 @@ with open(output_file_path, "w") as output_file:
         country_id, cases, recovered, recovery_percentage = result
         output_file.write(f"Country ID: {country_id}, Cases: {cases}, Recovered: {recovered}, Recovery Percentage: {recovery_percentage:.2f}%\n")
 
+#GAMES
+# Calculate the difference between away and home game scores for each team
+cur.execute('''
+    SELECT team, AVG(away_score - home_score) AS score_difference, GROUP_CONCAT(DISTINCT location) AS locations
+    FROM (
+        SELECT away_team AS team, away_score, home_score, location FROM games
+        UNION ALL
+        SELECT home_team AS team, home_score, away_score, location FROM games
+    )
+    GROUP BY team
+''')
+team_score_difference = cur.fetchall()
+
+# Print or use the calculated data
+print("Difference between Away and Home Game Scores for Each Team")
+print("---------------------------------------------------------")
+for team, score_diff, locations in team_score_difference:
+    print(f"Team: {team}, Score Difference: {score_diff:.2f}, Locations: {locations}")
 
 # Close the connection
 conn.close()
