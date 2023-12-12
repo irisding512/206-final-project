@@ -204,3 +204,202 @@ Country ID: 235, Cases: 251803806, Recovered: 245562422, Recovery Percentage: 97
 Country ID: 236, Cases: 129599441, Recovered: 125275840, Recovery Percentage: 96.66%
 Country ID: 237, Cases: 699219267, Recovered: 669127789, Recovery Percentage: 95.70%
 Country ID: 238, Cases: 109726885, Recovered: 107596864, Recovery Percentage: 98.06%
+
+
+
+
+Difference between Away and Home Game Scores for Each Team
+---------------------------------------------------------
+
+Team: Abilene Christian, Score Difference: -5.00, Locations: USA
+Team: Alabama A&M, Score Difference: 14.00, Locations: USA
+Team: Alabama State, Score Difference: -16.00, Locations: USA
+Team: Alba Berlin, Score Difference: 3.00, Locations: Germany
+Team: Argentino, Score Difference: 11.00, Locations: Argentina
+Team: Arkansas, Score Difference: 1.00, Locations: USA
+Team: Arkansas-Pine Bluff, Score Difference: 8.00, Locations: USA
+Team: Atenas, Score Difference: -27.00, Locations: Argentina
+Team: Atlanta Hawks, Score Difference: -12.00, Locations: USA
+Team: Auburn, Score Difference: 25.00, Locations: USA
+Team: Austin Peay, Score Difference: 26.00, Locations: USA
+Team: Austin Toros Spurs, Score Difference: 26.00, Locations: USA
+Team: BC Nokia, Score Difference: 9.00, Locations: Finland
+Team: BC Prievidza, Score Difference: 7.00, Locations: Slovakia
+Team: Bamberg, Score Difference: -3.00, Locations: Germany
+Team: Bashkimi, Score Difference: -10.00, Locations: Kosovo
+Team: Bauru, Score Difference: 18.00, Locations: Brazil
+Team: Bayern, Score Difference: 14.00, Locations: Germany
+Team: Bayi Rockets, Score Difference: -20.00, Locations: China
+Team: Beijing, Score Difference: 1.00, Locations: China
+Team: Beijing Royal Fighters, Score Difference: -1.00, Locations: China
+Team: Boca Juniors, Score Difference: 27.00, Locations: Argentina
+Team: Bonn, Score Difference: -3.00, Locations: Germany
+Team: Boston Celtics, Score Difference: 1.00, Locations: USA
+Team: Boston University, Score Difference: -23.00, Locations: USA
+Team: Bowling Green, Score Difference: -15.00, Locations: USA
+Team: Bradley, Score Difference: -27.00, Locations: USA
+Team: Brigham Young, Score Difference: 15.00, Locations: USA
+Team: Brooklyn Nets, Score Difference: 2.00, Locations: USA
+Team: Brown, Score Difference: -12.00, Locations: USA
+Team: Bucknell, Score Difference: -20.00, Locations: USA
+Team: Butler, Score Difference: 11.00, Locations: USA
+Team: CS Northridge, Score Difference: -1.00, Locations: USA
+Team: CSKA Moscow 2, Score Difference: -14.00, Locations: Russia
+Team: Caldwell College, Score Difference: 10.00, Locations: USA
+Team: Campbell, Score Difference: 5.00, Locations: USA
+Team: Chalon/Saone, Score Difference: 10.00, Locations: France
+Team: Chaminade Silverswords, Score Difference: -28.00, Locations: USA
+Team: Champion Christian Tigers, Score Difference: -8.00, Locations: USA
+Team: Charlotte Hornets, Score Difference: -17.00, Locations: USA
+Team: Chicago Bulls, Score Difference: -23.00, Locations: USA
+Team: Chicago State, Score Difference: -57.00, Locations: USA
+Team: Cholet, Score Difference: -10.00, Locations: France
+Team: Cleveland Cavaliers, Score Difference: -2.00, Locations: USA
+Team: Colorado State, Score Difference: 1.00, Locations: USA
+Team: Corinthians Paulista, Score Difference: 16.00, Locations: Brazil
+Team: Detroit Pistons, Score Difference: 15.00, Locations: USA
+Team: Dijon, Score Difference: -3.00, Locations: France
+Team: Drake, Score Difference: 3.00, Locations: USA
+Team: Erie BayHawks, Score Difference: 17.00, Locations: USA
+Team: Ferro, Score Difference: 9.00, Locations: Argentina
+Team: Florida State, Score Difference: 57.00, Locations: USA
+Team: GTK Gliwice, Score Difference: -13.00, Locations: Poland,Europe
+Team: Gardner Webb, Score Difference: 17.00, Locations: USA
+Team: Georgia, Score Difference: -8.00, Locations: USA
+Team: Georgia Tech, Score Difference: -1.00, Locations: USA
+Team: Golden Eagle Ylli, Score Difference: 10.00, Locations: Kosovo
+Team: Golden State Warriors, Score Difference: -3.00, Locations: USA
+Team: Grambling St., Score Difference: -10.00, Locations: USA
+Team: Grand Rapids Drive, Score Difference: -17.00, Locations: USA
+Team: Guangdong, Score Difference: 25.00, Locations: China
+Team: Guangzhou, Score Difference: 31.00, Locations: China
+Team: Hampton, Score Difference: -16.00, Locations: USA
+Team: Helsinki Seagulls, Score Difference: 16.00, Locations: Finland
+Team: IUPUI, Score Difference: -6.00, Locations: USA
+Team: Indiana, Score Difference: 13.00, Locations: USA
+Team: Indiana Pacers, Score Difference: 12.00, Locations: USA
+Team: JL Bourg, Score Difference: 3.00, Locations: France
+Team: Jacksonville, Score Difference: -5.00, Locations: USA
+Team: KTP Kotka Basket, Score Difference: -37.00, Locations: Finland
+Team: Kansas, Score Difference: 30.00, Locations: USA
+Team: Karhu Basket, Score Difference: -9.00, Locations: Finland
+Team: Kaspiy Aktau, Score Difference: -12.00, Locations: Kazakhstan
+Team: Kibirkstis Vilnius 2 W, Score Difference: -47.00, Locations: Lithuania
+Team: Kibirkstis Vilnius W, Score Difference: 47.00, Locations: Lithuania
+Team: Kobrat, Score Difference: 17.00, Locations: Finland
+Team: La Salle, Score Difference: 11.00, Locations: USA
+Team: La Union, Score Difference: -9.00, Locations: Argentina
+Team: Lahti Basketball, Score Difference: -16.00, Locations: Finland
+Team: Lakeland Magic, Score Difference: -26.00, Locations: USA
+Team: Lenadores, Score Difference: -2.00, Locations: Mexico
+Team: Limoges, Score Difference: -3.00, Locations: France
+Team: Lipscomb, Score Difference: 13.00, Locations: USA
+Team: Los Angeles Lakers, Score Difference: 10.00, Locations: USA
+Team: Louisiana Lafayette, Score Difference: -25.00, Locations: USA
+Team: Louisiana Tech, Score Difference: -13.00, Locations: USA
+Team: Loyola Chicago, Score Difference: -1.00, Locations: USA
+Team: MBA Moscow, Score Difference: 14.00, Locations: Russia
+Team: MBK Komarno, Score Difference: -7.00, Locations: Slovakia
+Team: Maine Red Claws, Score Difference: -23.00, Locations: USA
+Team: Memphis Grizzlies, Score Difference: -12.00, Locations: USA
+Team: Memphis Hustle, Score Difference: 23.00, Locations: USA
+Team: Miami (Ohio), Score Difference: -11.00, Locations: USA
+Team: Miami Heat, Score Difference: 17.00, Locations: USA
+Team: Michigan State, Score Difference: 8.00, Locations: USA
+Team: Midway, Score Difference: -30.00, Locations: USA
+Team: Milwaukee Bucks, Score Difference: 4.00, Locations: USA
+Team: Minnesota Timberwolves, Score Difference: 12.00, Locations: USA
+Team: Missouri, Score Difference: -11.00, Locations: USA
+Team: Montana, Score Difference: 12.00, Locations: USA
+Team: Murray State, Score Difference: -5.00, Locations: USA
+Team: Nanjing Tongxi, Score Difference: -25.00, Locations: China
+Team: Nebraska, Score Difference: 11.00, Locations: USA
+Team: Nebraska O., Score Difference: 27.00, Locations: USA
+Team: Nevada, Score Difference: 15.00, Locations: USA
+Team: New Mexico, Score Difference: -8.00, Locations: USA
+Team: New Mexico State, Score Difference: 20.00, Locations: USA
+Team: Norfolk State, Score Difference: -10.00, Locations: USA
+Team: Northeastern, Score Difference: -3.00, Locations: USA
+Team: Northern Colorado, Score Difference: 23.00, Locations: USA
+Team: Northern Illinois, Score Difference: 24.00, Locations: USA
+Team: Northern Kentucky, Score Difference: 30.00, Locations: USA
+Team: Northwestern, Score Difference: 27.00, Locations: USA
+Team: Oakland, Score Difference: -24.00, Locations: USA
+Team: Oklahoma, Score Difference: -19.00, Locations: USA
+Team: Oklahoma City Thunder, Score Difference: 3.00, Locations: USA
+Team: Old Dominion, Score Difference: -16.00, Locations: USA
+Team: Olimpico, Score Difference: -11.00, Locations: Argentina
+Team: Oral Roberts, Score Difference: 54.00, Locations: USA
+Team: Orlando Magic, Score Difference: -15.00, Locations: USA
+Team: Osijek, Score Difference: -10.00, Locations: Europe
+Team: Pfeiffer Falcons, Score Difference: -44.00, Locations: USA
+Team: Philadelphia 76ers, Score Difference: -5.00, Locations: USA
+Team: Plateros, Score Difference: 2.00, Locations: Mexico
+Team: Portland State, Score Difference: 10.00, Locations: USA
+Team: Portland Trail Blazers, Score Difference: 23.00, Locations: USA
+Team: Prinemanye, Score Difference: -52.00, Locations: Belarus
+Team: Qingdao, Score Difference: -12.00, Locations: China
+Team: Rahoveci, Score Difference: 25.00, Locations: Kosovo
+Team: Richmond, Score Difference: 10.00, Locations: USA
+Team: Rio Claro, Score Difference: -18.00, Locations: Brazil
+Team: Roanne, Score Difference: 3.00, Locations: France
+Team: SE Louisiana, Score Difference: -8.00, Locations: USA
+Team: Sacramento Kings, Score Difference: -1.00, Locations: USA
+Team: Saint Quentin, Score Difference: -8.00, Locations: France
+Team: Salon Vilpas, Score Difference: 37.00, Locations: Finland
+Team: San Antonio Spurs, Score Difference: -10.00, Locations: USA
+Team: San Diego State, Score Difference: 13.00, Locations: USA
+Team: San Francisco, Score Difference: 16.00, Locations: USA
+Team: Santa Cruz Warriors, Score Difference: -6.00, Locations: USA
+Team: Seattle, Score Difference: 4.00, Locations: USA
+Team: Shandong, Score Difference: -2.00, Locations: China
+Team: Shanghai, Score Difference: -4.00, Locations: China
+Team: Shenzhen, Score Difference: 4.00, Locations: China
+Team: Skrljevo, Score Difference: 20.00, Locations: Europe
+Team: South Alabama, Score Difference: 11.00, Locations: USA
+Team: South Carolina, Score Difference: -23.00, Locations: USA
+Team: South Carolina St, Score Difference: -26.00, Locations: USA
+Team: South Florida, Score Difference: -20.00, Locations: USA
+Team: Southern Univ., Score Difference: -10.50, Locations: USA
+Team: Southwestern Christian, Score Difference: -54.00, Locations: USA
+Team: St. Chamond, Score Difference: 8.00, Locations: France
+Team: Stanford, Score Difference: 19.00, Locations: USA
+Team: Tennessee, Score Difference: 12.00, Locations: USA
+Team: Tennessee State, Score Difference: -13.00, Locations: USA
+Team: Tennessee Tech, Score Difference: -13.00, Locations: USA
+Team: Texas A&M-Int, Score Difference: -27.00, Locations: USA
+Team: Texas Legends, Score Difference: 6.00, Locations: USA
+Team: Texas Southern, Score Difference: -12.00, Locations: USA
+Team: Texas State, Score Difference: 5.00, Locations: USA
+Team: Tianjin, Score Difference: -31.00, Locations: China
+Team: Tobol Kostanay, Score Difference: 12.00, Locations: Kazakhstan
+Team: Toronto Raptors, Score Difference: 5.00, Locations: USA
+Team: Torun, Score Difference: 6.00, Locations: Poland
+Team: Trepca, Score Difference: -25.00, Locations: Kosovo
+Team: Troy, Score Difference: -14.00, Locations: USA
+Team: Tsmoki Minsk 3, Score Difference: 52.00, Locations: Belarus
+Team: UC Irvine, Score Difference: 25.00, Locations: USA
+Team: UCLA, Score Difference: 5.50, Locations: USA
+Team: UMass Lowell, Score Difference: 12.00, Locations: USA
+Team: UT Chattanooga, Score Difference: -12.00, Locations: USA
+Team: UT Martin, Score Difference: -17.00, Locations: USA
+Team: UTRGV, Score Difference: 27.00, Locations: USA
+Team: Ulm, Score Difference: -14.00, Locations: Germany
+Team: Unifacisa, Score Difference: -16.00, Locations: Brazil
+Team: Ura Basket, Score Difference: -17.00, Locations: Finland
+Team: Usti n. Labem, Score Difference: 10.00, Locations: Europe
+Team: Utah Jazz, Score Difference: -4.00, Locations: USA
+Team: VCU Rams, Score Difference: 16.00, Locations: USA
+Team: Vanderbilt, Score Difference: 8.00, Locations: USA
+Team: Washington State, Score Difference: 2.50, Locations: USA
+Team: Weber State, Score Difference: -1.00, Locations: USA
+Team: Western Michigan, Score Difference: -4.00, Locations: USA
+Team: Wichita State, Score Difference: 23.00, Locations: USA
+Team: Winthrop, Score Difference: 44.00, Locations: USA
+Team: Wisc. Green Bay, Score Difference: 1.00, Locations: USA
+Team: Wisconsin, Score Difference: -9.50, Locations: USA
+Team: Xinjiang, Score Difference: 20.00, Locations: China
+Team: Yale, Score Difference: 20.00, Locations: USA
+Team: Zhejiang Chouzhou, Score Difference: 2.00, Locations: China
+Team: Zhejiang Guangsha, Score Difference: 12.00, Locations: China
+Team: s.Oliver Wurzburg, Score Difference: 3.00, Locations: Germany
