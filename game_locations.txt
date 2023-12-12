@@ -1,0 +1,19 @@
+Game Location Counts
+---------------------
+
+Location: Argentina, Count: 1
+Location: Belarus, Count: 1
+Location: Brazil, Count: 1
+Location: China, Count: 1
+Location: Europe, Count: 1
+Location: Finland, Count: 1
+Location: France, Count: 1
+Location: Germany, Count: 1
+Location: Kazakhstan, Count: 1
+Location: Kosovo, Count: 1
+Location: Lithuania, Count: 1
+Location: Mexico, Count: 1
+Location: Poland, Count: 1
+Location: Russia, Count: 1
+Location: Slovakia, Count: 1
+Location: USA, Count: 1

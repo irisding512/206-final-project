@@ -1,19 +1,5 @@
-Percentage of Articles in the Top 100 Health News Articles from Each Country
----------------------------------------------------------------------------
-
-Country ID: 224, Percentage: 3%
-Country ID: 222, Percentage: 2%
-Country ID: 196, Percentage: 2%
-Country ID: 238, Percentage: 1%
-Country ID: 225, Percentage: 1%
-Country ID: 186, Percentage: 1%
-Country ID: 173, Percentage: 1%
-
-
-
-
-Covid Recovery Percent in all Countries
----------------------------------------------------------------------------
+Recovery Percentages for Each Country
+------------------------------------
 
 Country ID: 1, Cases: 2166, Recovered: 2, Recovery Percentage: 0.09%
 Country ID: 2, Cases: 1930, Recovered: 1930, Recovery Percentage: 100.00%
@@ -204,22 +190,24 @@ Country ID: 235, Cases: 251803806, Recovered: 245562422, Recovery Percentage: 97
 Country ID: 236, Cases: 129599441, Recovered: 125275840, Recovery Percentage: 96.66%
 Country ID: 237, Cases: 699219267, Recovered: 669127789, Recovery Percentage: 95.70%
 Country ID: 238, Cases: 109726885, Recovered: 107596864, Recovery Percentage: 98.06%
-Count of Basketball Games by Location
-------------------------------------
 
-Location: Argentina, Game Count: 3
-Location: Belarus, Game Count: 1
-Location: Brazil, Game Count: 2
-Location: China, Game Count: 7
-Location: Europe, Game Count: 2
-Location: Finland, Game Count: 4
-Location: France, Game Count: 4
-Location: Germany, Game Count: 3
-Location: Kazakhstan, Game Count: 1
-Location: Kosovo, Game Count: 2
-Location: Lithuania, Game Count: 1
-Location: Mexico, Game Count: 1
-Location: Poland, Game Count: 1
-Location: Russia, Game Count: 1
-Location: Slovakia, Game Count: 1
-Location: USA, Game Count: 66
+
+
+
+Top Countries in Stories
+------------------------
+
+Country ID: 224, Count: 3
+Country ID: 222, Count: 2
+Country ID: 196, Count: 2
+Country ID: 238, Count: 1
+Country ID: 225, Count: 1
+Country ID: 186, Count: 1
+Country ID: 173, Count: 1
+
+
+
+
+Game Counts by Country
+----------------------
+
